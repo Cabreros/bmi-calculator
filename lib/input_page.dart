@@ -1,5 +1,8 @@
+import 'package:bmi_calculator/calculator_brain.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'bottom_button.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
@@ -80,7 +83,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Height',
+                    'HEIGHT',
                     style: kLabelTextStyle,
                   ),
                   Row(
@@ -176,7 +179,7 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'Age',
+                          'AGE',
                           style: kLabelTextStyle,
                         ),
                         Text(
@@ -214,11 +217,23 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColour,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
