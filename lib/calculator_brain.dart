@@ -25,11 +25,11 @@ class CalculatorBrain {
 
   String getInterpretation() {
     if (_bmi >= 25) {
-      return 'You need to eat a little bit less dawg';
+      return 'A little overweight, you can do it!';
     } else if (_bmi > 18.5) {
-      return 'You\'re good my G.';
+      return 'You\'re in a great place!';
     } else {
-      return 'Stop eating like a bird';
+      return 'Need to gain weight, but remember to eat healthy!';
     }
   }
 }
